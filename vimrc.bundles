@@ -1,0 +1,51 @@
+"
+" Plugins here are part of the core setup
+" Update ~/.vimrc.bundles.local for extra or experimental stuff
+"
+
+" color theme
+Plug 'rakr/vim-one'
+
+" fzf fuzzy finder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+Plug 'airblade/vim-gitgutter'
+
+" ctrlp
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'd11wtq/ctrlp_bdelete.vim'
+
+" use C-ijkl\ to navigate tmux panes and vim windows
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'tmux-plugins/vim-tmux'
+
+" create an indent object, which allows you to: y[count]ii, v[count]ai, dai etc.
+Plug 'michaeljsmith/vim-indent-object' 
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'nono/vim-handlebars'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+
+" allow . command to repeat plugin operations
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+
+Plug 'vim-scripts/Align'
+Plug 'vim-scripts/greplace.vim'
+Plug 'vim-scripts/matchit.zip'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'sjl/gundo.vim'
+Plug 'benmills/vimux'
+
+" linting
+Plug 'w0rp/ale'
+
+" status bar
+Plug 'vim-airline/vim-airline'

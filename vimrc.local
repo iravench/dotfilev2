@@ -1,0 +1,19 @@
+" format current buffer as JSON
+nnoremap <leader>fj :%!python -m json.tool<CR>
+
+" format current buffer as XML
+nnoremap <leader>fx :%!tidy -xml -i -q<CR>
+
+" fdoc is yaml
+augroup filetype_yaml
+  autocmd!
+  autocmd BufRead,BufNewFile *.fdoc set filetype=yaml
+augroup END
+
+" md is markdown
+augroup filetype_markdown
+  autocmd!
+  autocmd BufRead,BufNewFile *.md set filetype=markdown
+  autocmd BufRead,BufNewFile *.md set spell
+augroup END
+
