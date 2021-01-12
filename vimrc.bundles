@@ -8,6 +8,7 @@ Plug 'rakr/vim-one'
 
 " fzf fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" more than CtrlP?
 Plug 'junegunn/fzf.vim'
 
 Plug 'airblade/vim-gitgutter'

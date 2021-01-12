@@ -69,11 +69,12 @@ let &statusline = s:statusline_expr()
 
 " Enable 24-bit true colors if your terminal supports it.
 if (has("termguicolors"))
+  set termguicolors
+
   " https://github.com/vim/vim/issues/993#issuecomment-255651605
+  " for Vim inside Tmux
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
-  set termguicolors
 endif
 
 " set colorscheme
@@ -96,18 +97,24 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
-nnoremap <leader>l :Align
+" navigation file/directories
 nnoremap <leader>b :CtrlPBuffer<CR>
-
+nnoremap <leader>f :CtrlP<CR>
 nnoremap <leader>d :NERDTreeToggle<CR>
-nnoremap <leader>f :NERDTreeFind<CR>
 
-nnoremap <leader><space> :call whitespace#strip_trailing()<CR>:nohlsearch<CR>
+" formating
+nnoremap <leader>l : Align
+
+" reindent the whole file and back to current cursor location
 noremap! <Leader><tab> <esc>gg=G<C-o><C-o>zz
 
+" git
 nnoremap <leader>g :GitGutterToggle<CR>
+
+" undo
 nnoremap <leader>u :GundoToggle<CR>
 
+" window/pane
 nnoremap <leader>sv :vsplit<CR>
 nnoremap <leader>sh :split<CR>
 
@@ -121,11 +128,11 @@ noremap <silent> <leader>r :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo '
 cnoremap w!! %!sudo tee > /dev/null %
 
 " plugin settings
-let g:ctrlp_match_window = 'order:ttb,max:30'
+let g:ctrlp_match_window      = 'order:ttb,max:30'
 let g:ctrlp_working_path_mode = 0
-let g:NERDSpaceDelims = 1
-let g:gitgutter_enabled = 1
-let g:ale_echo_msg_format = '[%linter%] %s'
+let g:NERDSpaceDelims         = 1
+let g:gitgutter_enabled       = 1
+let g:ale_echo_msg_format     = '[%linter%] %s'
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
@@ -151,7 +158,7 @@ augroup fugitive
   autocmd BufReadPost fugitive://* set bufhidden=delete
 augroup END
 
-" create folder with -p
+" create folders not yet existed in the file path
 function! s:MkNonExDir(file, buf)
   if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
     let dir=fnamemodify(a:file, ':h')
