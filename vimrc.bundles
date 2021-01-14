@@ -8,23 +8,22 @@ Plug 'rakr/vim-one'
 
 " fzf fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" more than CtrlP?
 Plug 'junegunn/fzf.vim'
 
 Plug 'airblade/vim-gitgutter'
 
-" ctrlp
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'd11wtq/ctrlp_bdelete.vim'
-
 " use C-ijkl\ to navigate tmux panes and vim windows
 Plug 'christoomey/vim-tmux-navigator'
+" edit .tmux.conf in vim, syntax highlighting and such
 Plug 'tmux-plugins/vim-tmux'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+" just like tmux zoom
+Plug 'dhruvasagar/vim-zoom'
 
 " create an indent object, which allows you to: y[count]ii, v[count]ai, dai etc.
-Plug 'michaeljsmith/vim-indent-object' 
+Plug 'michaeljsmith/vim-indent-object'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'nono/vim-handlebars'
+
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 
@@ -39,13 +38,13 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 
 Plug 'vim-scripts/Align'
-Plug 'vim-scripts/greplace.vim'
-Plug 'vim-scripts/matchit.zip'
+" automaticall toggle relativenumber modes of vim line number display
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
-Plug 'sjl/gundo.vim'
+" interact with tmux from vim, can be combined with other plugins such as
+" pgr0ss/vimux-ruby-test
 Plug 'benmills/vimux'
 
-" linting
+" linting framework
 Plug 'w0rp/ale'
 
 " status bar

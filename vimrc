@@ -14,6 +14,9 @@ endif
 
 call plug#end()
 
+" extend matching with %
+runtime! macros/matchit.vim
+
 " enable syntax highlighting
 syntax enable
 
@@ -54,19 +57,6 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
 " }}}
 
-function! s:statusline_expr()
-  let mod = "%{&modified ? '[+] ' : !&modifiable ? '[x] ' : ''}"
-  let ro  = "%{&readonly ? '[RO] ' : ''}"
-  let ft  = "%{len(&filetype) ? '['.&filetype.'] ' : ''}"
-  let fug = "%{exists('g:loaded_fugitive') ? fugitive#statusline() : ''}"
-  let sep = ' %= '
-  let pos = ' %-12(%l : %c%V%) '
-  let pct = ' %P'
-
-  return '[%n] %f %<'.mod.ro.ft.fug.sep.pos.'%*'.pct
-endfunction
-let &statusline = s:statusline_expr()
-
 " Enable 24-bit true colors if your terminal supports it.
 if (has("termguicolors"))
   set termguicolors
@@ -98,9 +88,10 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
 " navigation file/directories
-nnoremap <leader>b :CtrlPBuffer<CR>
-nnoremap <leader>f :CtrlP<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>f :Files<CR>
 nnoremap <leader>d :NERDTreeToggle<CR>
+nnoremap <leader>t :NERDTreeFind<CR>
 
 " formating
 nnoremap <leader>l : Align
@@ -108,18 +99,12 @@ nnoremap <leader>l : Align
 " reindent the whole file and back to current cursor location
 noremap! <Leader><tab> <esc>gg=G<C-o><C-o>zz
 
-" git
-nnoremap <leader>g :GitGutterToggle<CR>
-
-" undo
-nnoremap <leader>u :GundoToggle<CR>
-
 " window/pane
 nnoremap <leader>sv :vsplit<CR>
 nnoremap <leader>sh :split<CR>
 
 " exec current line as shell command then replace it with the output
-nnoremap <leader>xr !!$SHELL<CR>
+nnoremap <leader>x !!$SHELL<CR>
 
 " reload vimrc
 noremap <silent> <leader>r :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
@@ -128,23 +113,9 @@ noremap <silent> <leader>r :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo '
 cnoremap w!! %!sudo tee > /dev/null %
 
 " plugin settings
-let g:ctrlp_match_window      = 'order:ttb,max:30'
-let g:ctrlp_working_path_mode = 0
 let g:NERDSpaceDelims         = 1
 let g:gitgutter_enabled       = 1
 let g:ale_echo_msg_format     = '[%linter%] %s'
-
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s --files-with-matches --nocolor -g ""'
-endif
-
-" init ctrlp buffer delete plugin
-call ctrlp_bdelete#init()
 
 " automatically rebalance windows on vim resize
 augroup utils
