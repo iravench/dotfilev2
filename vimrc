@@ -19,6 +19,7 @@ runtime! macros/matchit.vim
 
 " enable syntax highlighting
 syntax enable
+filetype plugin on
 
 set autoindent
 set autoread                                                 " reload files when changed on disk, i.e. via `git checkout`
@@ -41,6 +42,7 @@ set smartcase                                                " case-sensitive se
 set tabstop=8                                                " actual tabs occupy 8 characters
 set softtabstop=2                                            " insert mode tab and backspace use 2 spaces
 set expandtab                                                " expand tabs to spaces
+set path+=**                                                 " search subdirectories recursively
 set wildignore=log/**,node_modules/**,target/**,tmp/**
 set wildmenu                                                 " show a navigable menu for tab completion
 set wildmode=longest:full,full
@@ -93,10 +95,20 @@ nnoremap <leader>f :Files<CR>
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>t :NERDTreeFind<CR>
 
+" search files for word under cursor w/ ripgrep
+nnoremap <leader>g :Rg <C-R><C-W><CR>
+" grep git ls-files
+nnoremap <leader>gf :GFiles<CR>
+" grep commits
+nnoremap <leader>gc :Commits<CR>
+" grep commits related to current buffer
+nnoremap <leader>gcc :BCommits<CR>
+
 " formating
 nnoremap <leader>l : Align
+nnoremap <leader><space> :StripWhitespace<CR>
 
-" reindent the whole file and back to current cursor location
+" re-indent the whole file and back to current cursor location
 noremap! <Leader><tab> <esc>gg=G<C-o><C-o>zz
 
 " window/pane
@@ -107,7 +119,7 @@ nnoremap <leader>sh :split<CR>
 nnoremap <leader>x !!$SHELL<CR>
 
 " reload vimrc
-noremap <silent> <leader>r :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+nnoremap <silent> <leader>r :source $MYVIMRC<CR>:filetype detect<CR>:echom "vimrc reloaded"<CR>
 
 " in case you forgot to sudo
 cnoremap w!! %!sudo tee > /dev/null %

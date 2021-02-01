@@ -49,3 +49,5 @@ Plug 'w0rp/ale'
 
 " status bar
 Plug 'vim-airline/vim-airline'
+
+Plug 'ntpeters/vim-better-whitespace'
